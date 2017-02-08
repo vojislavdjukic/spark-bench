@@ -7,7 +7,7 @@
  *
  * @author limin
  */
-package MatrixFactorization.src.main.java;
+
 import org.apache.log4j.Logger;
 import org.apache.log4j.Level;
 import scala.Tuple2;

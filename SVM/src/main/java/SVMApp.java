@@ -8,7 +8,7 @@
  *
  * @author minli
  */
-package SVM.src.main.java;
+
 import org.apache.log4j.Logger;
 import org.apache.log4j.Level;
 import java.util.Arrays;
