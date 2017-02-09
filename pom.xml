@@ -21,7 +21,9 @@
         <scopt.version>3.2.0</scopt.version>
         <!--<spark.version>1.6.1</spark.version>-->
         <spark.version>2.1.0</spark.version>
-        <hadoop.mr2.version>2.7.0</hadoop.mr2.version>
+        <spark.bin.version>2.11</spark.bin.version>
+
+        <hadoop.mr2.version>2.7.3</hadoop.mr2.version>
         <scala-maven-plugin.version>3.2.2</scala-maven-plugin.version>
         <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
         <maven-assembly-plugin.version>2.5.5</maven-assembly-plugin.version>
@@ -128,13 +130,6 @@
     </plugins>
 </build>
 
-<!--modules>
-
-
-<module>SVM</module>
-
-    </modules-->
-
     <modules>   
         <module>common</module>
         <module>Terasort</module>
@@ -155,90 +150,6 @@
         <module>ConnectedComponent</module>
         <module>PregelOperation</module>
         <module>SQL</module>
-        <module>Streaming</module>		   
-
-
+        <module>Streaming</module>
     </modules>
-    <profiles>
-        <profile>
-            <id>spark1.2</id>
-            <properties>
-                <spark.version>1.2.1</spark.version>
-                <spark.bin.version>1.2</spark.bin.version>
-            </properties>
-            <activation>
-                <property>
-                    <name>spark1.2</name>
-                </property>
-            </activation>
-        </profile>
-
-        <profile>
-            <id>spark1.3</id>
-            <properties>
-                <env>spark1.3</env>
-                <spark.version>1.3.0</spark.version>
-                <spark.bin.version>1.3</spark.bin.version>
-            </properties>
-            <activation>
-                <property>
-                    <name>spark1.3</name>
-                </property>
-            </activation>
-        </profile>
-        <profile>
-            <id>spark1.4</id>
-            <properties>
-                <env>spark1.4</env>
-                <spark.version>1.4.0</spark.version>
-                <spark.bin.version>1.4</spark.bin.version>
-            </properties>
-            <activation>
-                <property>
-                    <name>spark1.4</name>
-                </property>
-            </activation>
-        </profile>
-        <profile>
-            <id>spark1.5</id>
-            <properties>
-                <env>spark1.5</env>
-                <spark.version>1.5.1</spark.version>
-                <spark.bin.version>1.5.1</spark.bin.version>
-            </properties>
-            <activation>
-                <property>
-                    <name>spark1.5</name>
-                </property>
-            </activation>
-        </profile>
-        <profile>
-            <id>spark1.6</id>
-            <properties>
-                <env>spark1.6</env>
-                <spark.version>1.6.1</spark.version>
-                <spark.bin.version>1.6.1</spark.bin.version>
-            </properties>
-            <activation>
-                <property>
-                    <name>spark1.6</name>
-                </property>
-            </activation>
-        </profile>
-
-        <profile>
-            <id>spark2.1</id>
-            <properties>
-                <env>spark2.1</env>
-                <spark.version>2.1.0</spark.version>
-                <spark.bin.version>2.1.0</spark.bin.version>
-            </properties>
-            <activation>
-                <property>
-                    <name>spark2.1</name>
-                </property>
-            </activation>
-        </profile>
-
-    </profiles>
 </project>

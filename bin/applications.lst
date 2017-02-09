@@ -1,7 +1,7 @@
-KMeans
+#KMeans
 #LinearRegression
 #LogisticRegression
-#SVM
+SVM
 #DecisionTree
 #MatrixFactorization
 #PageRank
