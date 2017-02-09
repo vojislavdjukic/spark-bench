@@ -16,7 +16,7 @@ DU ${INPUT_HDFS} SIZE
 #CLASS="org.apache.spark.streaming.util.RawTextSender"
 #OPTION="9999 /tmp/config.sh 65536 1024"
 
-JAR="${SPARK_HOME}/examples/target/scala-2.10/spark-examples-${SPARK_VERSION}-hadoop2.3.0.jar"
+JAR="${SPARK_HOME}/examples/target/scala-2.11/jars/spark-examples_2.11-2.1.1-SNAPSHOT.jar"
 #CLASS="org.apache.spark.examples.streaming.FeederActor"
 #OPTION="minli1 9999"
 
@@ -36,7 +36,7 @@ if [ $subApp = "StreamingLogisticRegression" ];then
 	${HADOOP_HOME}/bin/hdfs dfs -mkdir  ${testDir}
 
 	JAR="${DIR}/../LogisticRegression/target/LogisticRegressionApp-1.0.jar"
-	CLASS="LogisticRegression.src.main.java.LogisticRegressionDataGen"
+	CLASS="LogisticRegressionDataGen"
 	NUM_TRIALS=3
 	purge_data "${MC_LIST}"
 	for((i=0;i<${NUM_TRIALS};i++)); do
@@ -105,7 +105,7 @@ elif [ $subApp = "PageViewStream" ];then
 	#CLASS="org.apache.spark.examples.streaming.clickstream.PageViewGenerator"
 	CLASS="src.main.scala.PageViewGenerator"
 	OPTION=" 44444 ${optApp}"
-	JAR="${DIR}/target/scala-2.10/streamingapp_2.10-1.0.jar"
+	JAR="${DIR}/target/StreamingApp-1.0.jar"
 elif [ $subApp = "MQTTWordCount" ];then
 	#subapp=MQTTWordCount
 	#OPTION="tcp://minli1:1883 foo"

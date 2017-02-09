@@ -3,7 +3,7 @@
 master=bach26
 hadoop_master=bach24
 #A list of machines where the spark cluster is running
-MC_LIST=("bach21" "bach22" "bach23" "bach27" "bach28")
+MC_LIST=bach21,bach22,bach23,bach27,bach28
 
 
 [ -z "$HADOOP_HOME" ] &&     export HADOOP_HOME=/opt/hadoop

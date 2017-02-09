@@ -14,7 +14,7 @@ DIR=`cd $bin/../; pwd`
 DU ${INPUT_HDFS} SIZE 
 JAR="${DIR}/target/DecisionTreeApp-1.0.jar"
 CLASS="DecisionTree.src.main.java.DecisionTreeApp"
-
+DecisionTree
 
 setup
 for((i=0;i<${NUM_TRIALS};i++)); do		

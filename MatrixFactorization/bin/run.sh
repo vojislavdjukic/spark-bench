@@ -10,7 +10,7 @@ echo "========== running MF benchmark =========="
 DU ${INPUT_HDFS} SIZE 
 
 
-CLASS="MatrixFactorization.src.main.java.MFApp"
+CLASS="MFApp"
 OPTION=" ${INOUT_SCHEME}${INPUT_HDFS} ${INOUT_SCHEME}${OUTPUT_HDFS} ${rank} ${MAX_ITERATION} ${LAMBDA} ${STORAGE_LEVEL}"
 JAR="${DIR}/target/MFApp-1.0.jar"
 

@@ -1,7 +1,7 @@
 #KMeans
 #LinearRegression
 #LogisticRegression
-SVM
+#SVM
 #DecisionTree
 #MatrixFactorization
 #PageRank
@@ -14,4 +14,4 @@ SVM
 #PregelOperation
 #PCA
 #SQL
-#Streaming
+Streaming
