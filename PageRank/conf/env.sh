@@ -1,7 +1,8 @@
 # for preparation 
-numV=1000000
-NUM_OF_PARTITIONS=50
-mu=4.0
+numV=10000000
+NUM_OF_PARTITIONS=30
+#mu=4.0
+mu=15
 sigma=1.3
 
 # for running

@@ -22,17 +22,9 @@
  */
 package src.main.scala
 
-import org.apache.log4j.Logger
-import org.apache.log4j.Level
-import org.apache.spark.{SparkContext, SparkConf}
-import org.apache.spark.SparkContext._
-import org.apache.spark.graphx._
-import org.apache.spark.graphx.lib._
-import org.apache.spark.graphx.util.GraphGenerators
-import org.apache.spark.rdd._
-
+import org.apache.log4j.{Level, Logger}
 import org.apache.spark.storage.StorageLevel
-import org.apache.spark.graphx.impl.{EdgePartitionBuilder, GraphImpl}
+import org.apache.spark.{SparkConf, SparkContext}
 
 object pagerankApp {
 
@@ -63,34 +55,22 @@ object pagerankApp {
     else if (storageLevel == "MEMORY_AND_DISK")
       sl = StorageLevel.MEMORY_AND_DISK
 
-    val graph = GraphLoader.edgeListFile(sc, input, true, minEdge, sl, sl)
+    val lines = sc.textFile(input)
+    val links = lines.map { s =>
+      val parts = s.split("\\s+")
+      (parts(0), parts(1))
+    }.distinct().groupByKey().cache()
+    var ranks = links.mapValues(_ => 1.0)
 
-
-    val staticRanks = graph.staticPageRank(maxIterations, resetProb).vertices
-    staticRanks.saveAsTextFile(output);
-
+    for (_ <- 1 to maxIterations) {
+      val contribs = links.join(ranks).values.flatMap { case (urls, rank) =>
+        val size = urls.size
+        urls.map(url => (url, rank / size))
+      }
+      ranks = contribs.reduceByKey(_ + _).mapValues(0.15 + 0.85 * _)
+    }
+    ranks.coalesce(1).saveAsTextFile(output)
     sc.stop();
-
   }
 
-  def pagerank_usingSampledata(sc: SparkContext, input: String, output: String,
-                               maxIterations: Integer, tolerance: Double, resetProb: Double) {
-    val graph = GraphLoader.edgeListFile(sc, input + "/followers.txt")
-
-    val staticranks = graph.staticPageRank(maxIterations, resetProb).vertices
-
-    val ranks = graph.pageRank(tolerance, resetProb).vertices
-
-    // Join the ranks with the usernames
-    val users = sc.textFile(input + "/users.txt").map { line =>
-      val fields = line.split(",")
-      (fields(0).toLong, fields(1))
-    }
-    val ranksByUsername = users.join(ranks).map {
-      case (id, (username, rank)) => (username, rank)
-    }
-    // Print the result
-    println(ranksByUsername.collect().mkString("\n"))
-
-  }
 }
